@@ -1,0 +1,1373 @@
+//sub 1//
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+int palindrom(int x)
+{
+   int y=x,og=0;
+   while(y)
+    og=og*10+y%10, y=y/10;
+   return x==og;
+}
+
+int nrdiv(int x)
+{
+  int nr=0;
+  for(int d=2;d*d<=x;d++)
+    if(x%d==0)
+     {
+        nr++;
+        if(d!=x/d)
+            nr++;
+     }
+  return nr;
+}
+
+int main()
+{
+    int n, a[15],i;
+    fin>>n;
+    for(i=1;i<=n;i++)
+    {
+        fin>>a[i];
+        /// a
+        if(palindrom(a[i]))
+            cout<<a[i]<<" ";
+    }
+    cout<<'\n';
+    for(i=1;i<=n;i++)
+       {
+           cout<<nrdiv(a[i])<<" ";   ///b
+           if(a[i]%2==1)
+              fout<<a[i]<<" ";       ///c
+       }
+    return 0;
+}
+
+//sub 2//
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+int prim(int x)
+{
+    if(x<=1 || x%2==0 && x!=2)
+        return 0;
+    for(int d=3;d*d<=x;d=d+2)
+        if(x%d==0)
+            return 0;
+    return 1;
+}
+
+int main()
+{
+    int a[30], n, maxv=-9999, minv=9999;
+    fin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        fin>>a[i];
+        if(prim(a[i]))
+            cout<<a[i]<<" ";
+        if(a[i]%2==0 && a[i]>maxv)
+            maxv=a[i];
+        if(a[i]%2==1 && a[i]<minv)
+            minv=a[i];
+    }
+    cout<<'\n';
+    cout<<maxv<<" "<<minv;
+    for(int i=3;i<=maxv/2;i=i+2)
+        if(prim(i) && prim(maxv-i))
+        {
+            fout<<maxv-i<<" "<<i<<'\n';
+            //break;
+        }
+    return 0;
+}
+
+//sub 3//
+#include <iostream>
+#include <fstream>
+#include <climits>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+
+int v[30]={}, a=INT_MAX, b=INT_MIN, n;
+
+int euclid(int x, int y)
+{
+    int r;
+    x=a, y=b;
+    while(y)
+    {
+        r=x%y;
+        x=y;
+        y=r;
+    }
+    return x;
+}
+
+int main()
+{
+    fin >> n;
+    for(int i=1 ; i<=n ; i++)
+    {
+        fin >> v[i];
+        if(v[i]%2==0)
+            cout << v[i] << " ";
+        if(v[i]<a)
+            a=v[i];
+        if(v[i]>b)
+            b=v[i];
+    }
+    cout << '\n' << a << '\n' << b;
+    fout << euclid(a, b);
+    return 0;
+}
+
+//sub 4//
+#include <iostream>
+#include <fstream>
+#include <climits>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+int v[30]={}, n, ok;
+
+int pare(int x)
+{
+    while(x)
+    {
+        if(x%2==1)
+            return 0;
+        x/=10;
+    }
+    return 1;
+}
+
+int main()
+{
+    fin >> n;
+    for(int i=1 ; i<=n ; i++)
+    {
+        fin >> v[i];
+        if(v[i]%2==1)
+            cout << v[i] << " ";
+    }
+    cout << '\n';
+    for(int i=1 ; i<=n ; i++)
+        if(pare(v[i]))
+        {
+            cout << v[i] << " ";
+            ok=1;
+        }
+    if(ok==0)
+        cout << "Nu exista";
+
+    int f[10]={};
+    while(v[1])
+    {
+        f[v[1]%10]++;
+        v[1]=v[1]/10;
+    }
+    int a=0,b=0;
+    for(int i=1;i<=9;i++)
+        if(f[i])
+            a=a*10+i;
+    for(int i=9;i>=1;i--)
+        if(f[i])
+            b=b*10+i;
+    fout<<b<<" "<<a;
+    return 0;
+}
+
+//sub 5//
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+int impare(int x)
+{
+    if(x%2==0)
+        return 0;
+    return 1;
+}
+
+int nrdiv(int x)
+{
+    int p, d=2, nr=0;
+    while(x!=1)
+    {
+        p=0;
+        while(x%d==0)
+        {
+            p++;
+            x=x/d;
+        }
+        if(p)
+            nr++;
+        d++;
+        if(d*d>x)
+            d=x;
+    }
+    return nr;
+}
+
+int main()
+{
+    int x[30]={}, n, ok=0;
+    fin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        fin>>x[i];
+        if(x[i]%2==0)
+            cout<<x[i]<<" ";
+    }
+    cout<<'\n';
+    for(int i=1;i<=n;i++)
+    {
+        fin>>x[i];
+        if(impare(x[i]))
+            {
+                cout<<x[i]<<" ";
+                ok=1;
+            }
+    }
+    if(!ok)
+        cout<<"Nu exista";
+    int k;
+    cout<<'\n'<<"k= ";
+    cin>>k;
+    for(int i=1;i<=n;i++)
+        if(nrdiv(x[i])==k)
+            fout<<x[i]<<" ";
+    return 0;
+}
+
+//sub 6//
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+
+
+int main()
+{
+    int n , nr=0, p1 , p2;
+    float x[30], s=0;
+    fin >> n;
+    for(int i=1;i<=n;i++)
+    {
+        fin >> x[i];
+        cout << x[i] << " ";
+        if (x[i]<0)
+        {
+            nr++;
+            s = s + x[i];
+        }
+    }
+    cout<<'\n';
+    if(nr!=0)
+        cout<<setprecision(2)<<fixed<<s/nr;
+    else
+        cout<<0;
+    cout<<'\n'<<"p1 =";
+    cin>>p1;
+    cout<<"p2 =";
+    cin>>p2;
+    for(int i=p1;i<p2;i++)
+        for(int j=i+1; j<=p2 ; j++)
+            if(x[i]>x[j])
+            {
+                float aux=x[i];
+                x[i]=x[j];
+                x[j]=aux;
+            }
+   for(int i=1;i<=n;i++)
+        fout<<x[i]<<" ";
+
+    return 0;
+}
+
+//sub 7//
+#include <iostream>
+#include <fstream>
+#include <climits>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+ int nrcif(int x)
+ {
+     int nr=0;
+     do
+     {
+         nr++;
+         x=x/10;
+     }
+     while(x);
+     return nr;
+ }
+ int main()
+ {
+     int v[30],n,s=0;
+     fin>>n;
+     for(int i=1;i<=n;i++)
+     {
+         fin>>v[i];
+         if(v[i]%2==1)
+            s=s+v[i];
+     }
+    for(int i=n;i>=1;i--)
+        cout<<v[i]<<" ";
+    cout<<'\n';
+    for(int i=1;i<=n;i++)
+        cout<<nrcif(v[i])<<" ";
+    fout<<s;
+ return 0;
+ }
+
+//sub 8//
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+int caut_bin(int x, int v[], int n)
+{
+    int st=1, dr=n;
+    while(st <= dr)
+    {
+        int mij=(st+dr)/2;
+        if(v[mij]>x)
+            st=mij+1;
+        if(v[mij]<x)
+            dr=mij-1;
+        if(v[mij]==x)
+            return 1;
+    }
+    return 0;
+}
+
+int main()
+{
+    int n, v[30]={}, s=0, x;
+    fin >> n;
+    for(int i=1 ; i<=n ; i++)
+    {
+        fin >> v[i];
+        if(v[i]>=0)
+            s+=v[i];
+    }  
+    for(int i=n ; i>=1 ; i--)
+        cout << v[i] << " ";
+
+    cout << "\nx= ";
+    cin >> x;
+    if(caut_bin(x, v, n))
+        cout << "DA";
+    else
+        cout << "NU";
+    fout << s;
+    return 0;
+}
+
+//sub 9//
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+int main()
+{
+    int a[20][20]={}, n, m, c, k, ok=0;
+    fin>>n>>m;
+    for(int i=1;i<=n;++i)
+    {
+        for(int j=1;j<=m;++j)
+        {
+            fin>>a[i][j];
+            if (a[i][j]==0)
+                a[i][0]++;
+            cout<<setw(3)<<a[i][j]<<" ";
+        }
+        cout<<'\n';
+        }
+        fin>>k;
+    for(int i=1;i<=n;++i)
+        if(a[i][0]==k)
+    {
+        cout<<i<<" ";
+        ok=1;
+    }
+    if(!ok)
+        cout<<"Nu exista";
+    ok=0;
+    cout<<"\nc=";
+    cin>>c;
+    for(int i=1;i<=n;++i)
+        if(a[i][c]%2==1)
+    {
+        fout<<a[i][c]<<" ";
+        ok=1;
+    }
+    if(!ok)
+        fout<<"NU";
+    return 0;
+}
+
+//sub 10//
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+int main()
+{
+    int a[20][20]={}, n, m, c, k, ok=0;
+    fin>>n>>m;
+    for(int i=1;i<=n;++i)
+    {
+        for(int j=1;j<=m;++j)
+        {
+            fin>>a[i][j];
+            if (a[i][j]==0)
+                a[i][0]++;
+            cout<<setw(3)<<a[i][j]<<" ";
+        }
+        cout<<'\n';
+        }
+        fin>>k;
+    for(int i=1;i<=n;++i)
+        if(a[i][0]==k)
+    {
+        cout<<i<<" ";
+        ok=1;
+    }
+    if(!ok)
+        cout<<"Nu exista";
+    ok=0;
+    cout<<"\nc=";
+    cin>>c;
+    for(int i=1;i<=n;++i)
+        if(a[i][c]%2==1)
+    {
+        fout<<a[i][c]<<" ";
+        ok=1;
+    }
+    if(!ok)
+        fout<<"NU";
+    return 0;
+}
+
+//sub 11//
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+int palindrom(int x)
+{
+    int og=0,y=x;
+    while(x)
+    {
+        og=og*10+(x%10);
+        x=x/10;
+    }
+    if(og==y)
+        return 1;
+    return 0;
+}
+int main()
+{
+    int a[20][20],n,p=1,ok=0;;
+    fin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+            fin>>a[i][j];
+            if(palindrom(a[i][j]))
+            {
+                fout<<a[i][j]<<" ";
+                ok=1;
+            }
+            cout<<a[i][j]<<" ";
+            if(j<i)
+                p=(p*a[i][j])%10;
+        }
+        cout<<endl;
+    }
+    cout<<p;
+    if(!ok)
+        fout<<"Nu exista";
+    return 0;
+}
+
+//sub 12//
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+void afis_min(int a[20][20], int n)
+{
+    int minv;
+    for(int i=1;i<=n;i++)
+    {
+        minv=a[i][1];
+        for(int j=2;j<=n;j++)
+            if(a[i][j]<minv)
+                minv=a[i][j];
+        fout<<minv<<" ";
+    }
+}
+
+int main()
+{
+    int a[20][20],n,s=0,ok=0;;
+    fin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+            fin>>a[i][j];
+            cout<<a[i][j]<<" ";
+            if(j==n-i+1)
+                s=s+a[i][j];
+        }
+        cout<<endl;
+    }
+    cout<<s;
+    afis_min(a,n);
+    return 0;
+}
+
+//sub 13//
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+int verif(int a[10][10],int n,int k)
+{
+   for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++)
+        if(a[i][j]==k)
+        return 1;
+   return 0;
+}
+int main()
+{
+    int a[10][10],n,k;
+    fin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+            fin>>a[i][j];
+            cout<<setw(3)<<a[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<"k= ";
+    cin>>k;
+    if(verif(a,n,k))
+        cout<<"DA";
+    else
+        cout<<"NU";
+
+     for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+            if(i==n)
+            a[i][j]=0;
+            fout<<setw(3)<<a[i][j]<<" ";
+        }
+        fout<<endl;
+    }
+    return 0;
+}
+
+//sub 14//
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+void suma(float a[10][10], int n, int k)
+{
+    float sk=0;
+    cout << "\nk= ";
+    cin >> k;
+    for(int j=1 ; j<=n ; j++)
+        sk+=a[k][j];
+    fout << sk;
+}
+
+int main()
+{
+    float a[10][10], s=0;
+    int n, k;
+    fin >> n;
+    for(int i=1 ; i<=n ; i++)
+    {
+        for(int j=1 ; j<=n ; j++)
+        {
+            fin >> a[i][j];
+            cout << setw(4) << a[i][j] << " ";
+            if(i==j)
+                s+=a[i][j];
+        }
+        cout << '\n';
+    }
+    cout << s/n;
+    suma(a, n, k);
+    return 0;
+}
+
+//sub 15//
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+void transform(char b[])
+{
+    for(int i=0 ; i<strlen(b) ; i++)
+        b[i]=toupper(b[i]);
+    cout << b << endl;
+}
+
+int main()
+{
+    char s[250], voc[]="aeiouAEIOU", b[250]={};
+    int nr=0, cuv=1;
+    fin.get(s,250);
+    strcpy(b, s);
+    transform(b);
+    for(int i=0 ; i<strlen(s) ; i++)
+    {
+        if(strchr(voc, s[i])==0 && s[i]!=' ')
+            nr++;
+        if(s[i]==' ')
+            cuv++;
+    }
+    cout << nr;
+    fout << cuv;
+}
+
+//sub 16//
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+int nrcuva(char s[])
+{
+    char *p;
+    int nr=0;
+    for(p=strtok(s, " ") ; p ; p=strtok(NULL, " "))
+        if(p[0]=='a')
+            nr++;
+    return nr;
+}
+
+int main()
+{
+    char s[100], t[100]={};
+    int nr=0;
+    fin.get(s, 100);
+    strcpy(t, s);
+    for(int i=0 ; i<strlen(t) ; i++)
+        t[i]=toupper(t[i]);
+    cout << t << '\n';
+    for(int i=0 ; i<strlen(s) ; i++)
+        if(strchr("aeiouAEIOU", s[i]))
+            nr++;
+    cout << nr;
+    fout << nrcuva(s);
+    return 0;
+}
+
+//sub 17//
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+void inlocuire(char s[], char c)
+{
+    char *p;
+    for(p=strtok(s," ");p;p=strtok(NULL, " "))
+    {
+        if(p[0]=='M')
+        p[0]=c;
+        fout<<p<<" ";
+    }
+
+}
+
+int main()
+{
+    char s[70], t[70], c;
+    int nr=1;
+    fin.get(s,70);
+    strcpy(t,s);
+    for(int i=0;i<strlen(t);i++)
+    {
+        if(t[i]==' ')
+            nr++;
+        t[i]=tolower(t[i]);
+    }
+
+    cout<<t<<'\n'<<nr<<"\nc=";
+    cin>>c;
+    inlocuire(s,c);
+    return 0;
+}
+
+//sub 18//
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+void afis(char s[])
+{
+    char *p;
+    for(p = strtok(s, " "); p; p = strtok(NULL, " "))
+        cout << p << '\n';
+}
+
+int main()
+{
+    int nr = 0;
+    char s[100], t[100];
+    fin.get(s, 100);
+    strcpy(t, s);
+    for(int i = 0; i < strlen(t); i++)
+        t[i] = tolower(t[i]);
+    cout << t << '\n';
+    afis(s);
+    for(int i = 0; i <= strlen(t); i++)
+        if(isdigit(t[i]))
+            nr++;
+    fout << nr;
+    return 0;
+}
+
+//sub 19//
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+void afis(char t[])
+{
+  for(int i=0; i<=strlen(t)/2; i++)
+  {
+    fout<<t<<'\n';
+    t[i]=t[strlen(t)-i-1]=' ';
+  }
+}
+
+int main()
+{
+    char s[50], t[50], *p;
+    fin.get(s,50);
+    strcpy(t,s);
+    for(int i=0; i<strlen(t); i++)
+      t[i]=toupper(t[i]);
+    cout<<t<<'\n';
+    for(int i=0; i<strlen(s); i++)
+      if(s[i]!=' ')
+         cout<<s[i];
+    p=strtok(s," ");
+    afis(p);
+    return 0;
+}
+
+//sub 20//
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+void separare(char s[])
+{
+    char *p , a[100][45], s1[45]={}, s2[45]={};
+    int n = 0;
+    for(p=strtok(s," "); p ; p = strtok(NULL," ")) //  maria are mere
+        strcpy(a[++n],p);
+    for(int i = 1 ; i < n ; i++)
+        for(int j = i+1; j<=n; j++)
+        {
+            int f1[27]={}, f2[27]={};
+            strcpy(s1,a[i]);
+            strcpy(s2,a[j]);
+            for(int k=0; k<strlen(s1);k++)
+            {
+                s1[k] = toupper(s1[k]);
+                f1[s1[k]-'A'+1]++;
+            }
+            for(int k=0; k<strlen(s2);k++)
+            {
+                s2[k] = toupper(s2[k]);
+                f2[s2[k]-'A'+1]++;
+            }
+            int ok = 1;
+            for(int k = 1; k<=26 ; k++)
+                if(f1[k]!=f2[k])
+                    ok = 0;
+            if(ok)
+                fout<<a[i]<<" "<<a[j]<<'\n';
+        }
+}
+
+
+int main()
+{
+    char s[100], t[100]={};
+    fin.get(s,100);
+    strcpy(t,s);
+    for(int i = 0 ; i< strlen(t) ; i++)
+        t[i] = toupper(t[i]);
+    cout<<t<<'\n';
+    for(int i = 0 ; i < strlen(s) ; i++)
+        if(s[i]!=' ')
+            cout << s[i];
+    separare(s);
+    return 0;
+}
+
+//sub 21//
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+int palindrom(char p[])
+{
+    for(int i=0;i<strlen(p)/2;i++)
+        if(p[i]!=p[strlen(p)-i-1])
+            return 0;
+    return 1;
+}
+
+int main()
+{
+    char s[100],temp[100];
+    fin.get(s,100);
+    strcpy(temp,s);
+    for(int i=0;i<strlen(s);i++)
+        temp[i]=tolower(temp[i]);
+    cout<<temp<<endl;
+    for(int i=0;i<strlen(s);i++)
+        if(s[i]!=' ')
+            cout<<s[i];
+    for(char *p=strtok(s," ");p;p=strtok(NULL," "))
+    {
+        char cuv[45];
+        strcpy(cuv,p);
+        for(int i=0;i<strlen(cuv);i++)
+            cuv[i]=toupper(cuv[i]);
+        if(palindrom(cuv))
+            fout<<p<<" ";
+    }
+    return 0;
+}
+
+//sub 22//
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+struct fractie
+{
+    int a,b;
+}f[10];
+int cmmdc (int a,int b)
+{
+    int r;
+    while(b)
+    {
+        r=a%b;
+        a=b;
+        b=r;
+    }
+    return a;
+}
+int main()
+{
+    int n,maxv=0,x,y;
+    fin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        fin>>f[i].a>>f[i].b;
+        cout<<f[i].a<<'/'<<f[i].b<<" ";
+        if(f[i].a>maxv)
+        {
+            x=f[i].a;
+            y=f[i].b;
+            maxv=f[i].a;
+        }
+    }
+    cout<<'\n'<<x<<'/'<<y;
+    for(int i=1;i<=n;i++)
+        if(cmmdc(f[i].a,f[i].b)==1)
+        fout<<f[i].a<<'/'<<f[i].b<<" ";
+    return 0;
+}
+
+//sub 23//
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+struct punct
+{
+    int x,y;
+}p[10];
+void afisare(int n)
+{
+    for(int i=1;i<=n;i++)
+        if(p[i].x%2==0 && p[i].y%2==0)
+            fout<<"("<<p[i].x<<","<<p[i].y<<")\n";
+}
+int main()
+{
+    int n,nr=0;
+    fin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        fin>>p[i].x>>p[i].y;
+        cout<<"("<<p[i].x<<","<<p[i].y<<")\n";
+        if(p[i].y==0)
+            nr++;
+    }
+    cout<<"Numarul punctelor situate pe axa Ox este "<<nr;
+    afisare(n);
+    return 0;
+}
+
+//sub 24//
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+void cuvmax(char s[10][45], int n)
+{
+    int maxv = 0;
+    char t[45];
+    for(int i = 1 ; i <= n ; i++)
+        if(strlen(s[i]) > maxv)
+        {
+            maxv = strlen(s[i]);
+            strcpy(t, s[i]);
+        }
+    cout << t;
+}
+
+int main()
+{
+    int n;
+    char s[10][45], t[45];
+    fin >> n;
+    for(int i = 1; i <= n ; i++)
+    {
+        fin >> s[i];
+        strcpy(t,s[i]);
+        for(int j = 0; j < strlen(t); j++)
+            t[j] = tolower(t[j]);
+        cout << t << ' ';
+    }
+    cout << '\n';
+    cuvmax(s, n);
+    for(int i = 1; i <= n; i++)
+        if(strlen(s[i]) >= i - 1 )
+            fout << s[i][i - 1];
+        else
+            fout << ' ';
+    fout << '.';
+    return 0;
+}
+
+//sub 25//
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+int main()
+{
+    int a[10][10]={},x,y,i,j,gr=0,n,v;
+    fin>>n;
+    while(fin>>x>>y)
+        a[x][y]=a[y][x]=1;
+    for(i=1;i<=n;i++)
+    {
+        for(j=1;j<=n;j++)
+            cout<<a[i][j]<<" ";
+        cout<<endl;
+    }
+    cout<<"v=";
+    cin>>v;
+    for(j=1;j<=n;j++)
+        gr=gr+a[v][j];
+    cout<<gr;
+    for(i=1;i<=n;i++)
+    {
+        for(j=1;j<=n;j++)
+        {
+            if(i!=j)
+                a[i][j]=1;
+            fout<<a[i][j]<<" ";
+        }
+
+        fout<<endl;
+    }
+    return 0;
+}
+
+//sub 26//
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+void afisDrum(int n, int a[][11], int v)
+{
+    for (int i = 1; i <= n; ++i)
+        if (a[v][i] && i != v)
+            for (int j = 1; j <= n; ++j)
+                if (a[i][j] && j != i)
+                    fout << v << ' ' << i << ' ' << j << '\n';
+}
+
+int main()
+{
+    int n, a[11][11] = {}, x, y;
+
+    fin >> n;
+    while (fin >> x >> y)
+        a[x][y] = 1;
+
+    for (int i = 1; i <= n; ++i)
+    {
+        for (int j = 1; j <= n; ++j)
+            cout << a[i][j] << ' ';
+        cout << '\n';
+    }
+
+    int v, gradExt = 0, gradInt = 0;
+    cout << "v = ";
+    cin >> v;
+
+    for (int i = 1; i <= n; ++i)
+    {
+        gradExt += a[v][i];
+        gradInt += a[i][v];
+    }
+
+    cout << gradInt << ' ' << gradExt;
+
+    afisDrum(n, a, v);
+
+    return 0;
+}
+
+//sub 27//
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+void graf(int &n,int a[10][10])
+{
+  fin>>n;
+  int x,y;
+  while(fin>>x>>y)
+    a[x][y]=a[y][x]=1;
+}
+int main()
+{
+    int a[10][10]={},ok=0,n;
+    graf(n,a);
+    for(int i=1;i<=n;i++)
+    {
+      for(int j=1;j<=n;j++)
+        cout<<a[i][j]<<" ";
+        cout<<endl;
+    }
+    for(int i=1;i<=n;i++)
+    {
+      int gr=0;
+      for(int j=1;j<=n;j++)
+      gr=gr+a[i][j];
+      if(gr==0)
+      {
+        ok=1;
+        cout<<i<<" ";
+      }
+    }
+    if(ok==0)
+      cout<<"NU EXISTA NODURI IZOLATE";
+    int v;
+    cout<<endl<<"v=";
+    cin>>v;
+      for(int i=1;i<=n;i++)
+    {
+      for(int j=1;j<=n;j++)
+      {
+        if((i==v || j==v )&& i!=j)
+          a[i][j]=1;
+          fout<<a[i][j]<<" ";
+      }
+      fout<<endl;
+    }
+
+    return 0;
+}
+
+//sub 28//
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+int n, a[11][11];
+
+void read()
+{
+    int x, y;
+    fin >> n;
+    while(fin >> x >> y)
+        a[x][y] = a[y][x] = 1;
+}
+
+void print()
+{
+    for (int i = 1; i <= n; ++i)
+    {
+        for (int j = 1; j <= n; ++j)
+            cout << a[i][j] << ' ';
+        cout << '\n';
+    }
+}
+
+
+int main()
+{
+    int grad[11]={}, maxv=0;
+    read();
+    print();
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        grad[i]=grad[i]+a[i][j];
+        if(grad[i]>maxv)
+            maxv=grad[i];
+    }
+    for(int i=1;i<=n;i++)
+        if(grad[i]==maxv)
+            cout<<i<<" ";
+    int v;
+    cout<<endl;
+    cout<<"v=";
+    cin>>v;
+    for (int i = 1; i <= n; ++i)
+    {
+        for (int j = 1; j <= n; ++j)
+        {
+            if((i==v || j==v)&& (i!=j))
+                a[i][j]=0;
+            fout<<a[i][j]<<" ";
+        }
+        fout<<endl;
+    }
+    return 0;
+}
+
+//sub 29//
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+ifstream fin("atestat.in");
+ofstream fout("atestat.out");
+
+void citire(int &n, int a[11][11])
+{
+    int x,y;
+    fin>>n;
+    while(fin>>x>>y)
+        a[x][y]=a[y][x]=1;
+}
+int main()
+{
+    int a[11][11]={},v,n;
+    citire(n,a);
+    for(int i=1; i<=n; i++)
+    {
+        for(int j=1; j<=n; j++)
+            cout<<a[i][j]<<' ';
+        cout<<'\n';
+    }
+    int m,t[10], ok=1;
+    cout<<"m=";
+    cin>>m;
+    for(int i=1; i<=m; i++)
+        cin>>t[i];
+    for(int i=1; i<m; i++)
+        if(a[i][i+1]==0)
+            ok=0;
+    if(ok)
+        cout<<"DA";
+    else
+        cout<<"NU";
+    cout<<"v=";
+    cin>>v;
+    for(int i=1; i<=n; i++)
+        if(a[i][v]==1)
+            fout<<i<<" ";
+
+
+    return 0;
+}
+
+//sub 30//
+#include <iostream>
+#include <fstream>
+ 
+using namespace std;
+ifstream fin ("atestat.in");
+ofstream fout ("atestat.out");
+void afisare(int n,int a[10][10])
+{
+    int gre, gri;
+    for(int i=1;i<=n;i++)
+    {
+        gre=gri=0;
+        for(int j=1;j<=n;j++)
+        {
+            gre=gre + a[i][j];
+            gri=gri + a[j][i];
+        }
+        if(gre==gri)
+            cout<<i<<" ";
+    }
+}
+ 
+int main()
+{
+    int a[10][10]={},n,m,v[10],x,y,ok=1;
+    fin>>n;
+    while(fin>>x>>y)
+        a[x][y]=1;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+            cout<<a[i][j]<<" ";
+        cout<<endl;
+    }
+    afisare (n, a);
+ 
+    cout<<endl<<"m=";
+    cin>>m;
+    for(int i=1;i<=m;i++)
+        cin>>v[i];
+    for(int i=1;i<m;i++)
+        if(a[v[i]][v[i+1]]==0)
+        ok=0;
+    if(ok)
+        fout<<"DA";
+    else
+        fout<<"NU";
+ 
+    return 0;
+}
