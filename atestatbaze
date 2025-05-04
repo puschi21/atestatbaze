@@ -1,0 +1,671 @@
+Subiectul 1 
+ 
+Să se creeze, în baza de date atestat_2011, tabela elevi, având următoarea structură: 
+o	NUME char(20) (numele elevului) 
+o	CLASA char(3) (clasa, exemplu: 9A, 12B) 
+o	ABSENTE int  (numărul absenţelor) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişați toţi elevii cu numărul maxim de absenţe din clasa 12A. Dacă această clasă nu există, afișați un mesaj corespunzător. 
+3.	Calculați şi afişați numărul absenţelor la nivel de şcoală. 
+
+--a
+select * from elevi
+--b
+if exists(select * from elevi where clasa='12A')
+	select * from elevi where absente=(select max(absente) from elevi where clasa ='12A') and clasa='12A' 
+else
+    select 'Nu exista clasa 12A' as Mesaj
+--c
+select sum(absente) as 'Total absente pe scoala' from elevi
+
+Subiectul 2 
+ 
+Să se creeze, în baza de date atestat_2011, tabela elevi, având următoarea structură: 
+o	NUME char(20) (numele elevului) 
+o	CLASA char(3) (clasa, exemplu: 9A, 12B) 
+o	ABSENTE int  (numărul absenţelor) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişați lista elevilor pentru  clasa 12B, elevi care au numărul de absenţe mai mare decât 10. Dacă această clasă nu există, afișați un mesaj corespunzător. 
+3.	Ştergeţi elevii care nu au absenţe şi afişaţi datele din tabelă . 
+ 
+--a
+select * from elevi
+--b
+if exists(select * from elevi where clasa='12B')
+ select * from elevi where clasa='12B' and absente>10
+else
+ select 'Nu exista elevi in 12B' as Mesaj
+--c
+delete from elevi where absente=0
+select * from elevi
+
+Subiectul 3 
+ 
+Să se creeze, în baza de date atestat_2011, tabela scoala, având următoarea structură: 
+o	NUME char(20) (numele elevului) 
+o	CLASA char(3) (clasa, exemplu: 9A, 12B) 
+o	VARSTA int (vârsta elevului în ani) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişați clasa în care se găseşte elevul Ionescu Dan. În cazul în care nu se găseşte în tabelă, se introduc datele elevului; 
+3.	Afişați toţi colegii de clasă a elevului Ionescu Dan. 
+
+ --a
+select * from scoala
+--b
+if exists(select * from scoala where Nume='Ionescu Dan')
+  select clasa as 'Clasa lui Ionescu Dan' from scoala where Nume='Ionescu Dan' 
+else
+   insert into scoala (Nume, Clasa, Varsta) values ('Ionescu Dan', '12A', 17)
+--c
+   select * from scoala where Nume<>'Ionescu Dan' 
+   and clasa=(select clasa from scoala where Nume='Ionescu Dan')    
+ 
+Subiectul 4 
+ 
+Să se creeze, în baza de date atestat_2011, tabela scoala, având următoarea structură: 
+o	NUME char(20) (numele elevului) 
+o	CLASA char(3) (clasa, exemplu: 9A, 12B) 
+o	VARSTA int (vârsta elevului în ani) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişați toţi elevii cu vârsta peste 18 ani. Dacă nu există, atunci se va afişa un mesaj corespunzător. 
+3.	Afişați lista elevilor în ordine descrescătoare după vârstă. 
+
+--a
+select * from scoala
+--b
+if exists (select * from scoala where varsta>18)
+	select * from scoala where varsta>18
+else
+   select 'Nu exist[ elevi cu varsta peste 18 ani' as Mesaj
+--c
+select * from scoala order by varsta desc
+
+Subiectul 5 
+ 
+Să se creeze, în baza de date atestat_2011, tabela examen, având următoarea structură: 
+o	NUME char(20) (numele elevului) 
+o	NOTA1 decimal(5,2) (nota de la scris) 
+o	NOTA2 decimal(5,2) (nota de la oral) 
+o	MEDIA decimal(5,2) (media celor două note) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Calculați  media elevilor, dar numai în cazul în care ambele note sunt >= 5; 
+3.	Afişează lista elevilor reuşiţi la examen, în ordine alfabetică. Dacă nu există niciun elev reușit, afișați un mesaj corespunzător. 
+
+--a 
+select * from examen
+--b
+update examen set media=(Nota1+Nota2)/2 where Nota1>=5 and Nota2>=5
+select * from examen
+--c
+if exists(select * from examen where Nota1>=5 and Nota2>=5)
+	select * from examen where Nota1>=5 and Nota2>=5 order by Nume
+else
+    select 'Nu există elevi reușiti la examen'
+
+Subiectul 6 
+ 
+Să se creeze, în baza de date atestat_2011, tabela examen, având următoarea structură: 
+o	NUME char(20) (numele elevului) 
+o	CLASA char(3) (clasa, exemplu: 9A, 12B) 
+o	NOTA1 decimal(5,2) (nota la matematică) 
+o	NOTA2 decimal(5,2) (nota la informatică) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Calculează şi afişează într-o coloană virtuală numită MEDIA, media elevilor, dar numai în cazul în care ambele note sunt >= 5; 
+3.	Afişează lista elevilor reuşiţi la examen, în ordine alfabetică. Dacă nu există niciun elev reușit, afișați un mesaj corespunzător. 
+
+--a
+select * from examen
+--b
+select Nume, Clasa, Nota1, Nota2, (Nota1+Nota2)/2 as Medie  
+from examen where Nota1>=5 and Nota2>=5
+--c
+if exists(select * from examen where Nota1>=5 and Nota2>=5)
+   select * from examen where Nota1>=5 and Nota2>=5 order by Nume
+else
+   select 'Nu există elevi reușiți la examen' as Mesaj
+
+
+Subiectul 7 
+ 
+Să se creeze, în baza de date atestat_2011, tabela produse, având următoarea structură: 
+o	DENUMIRE char(20) (denumirea produsului)  
+o	PRET decimal(7,2) (preţul unitar al produsului) 
+o	CANTITATE int (cantitatea existentă) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Ştergeți produsele care au stocul 0. Dacă nu există astfel de produse, afișați un mesaj corespunzător. 
+3.	Măriţi preţul fiecărui produs cu 10% şi afişaţi tabela.  
+
+--a
+select *from produse
+--b
+if exists(select *from produse where cantitate=0)
+	delete from produse where cantitate=0
+else
+	select 'Nu exista produse cu stoc 0' as mesaj
+--c
+update produse set pret=pret*1.10
+select *from produse
+
+Subiectul 8 
+ 
+Să se creeze, în baza de date atestat_2011, tabela telefon, având următoarea structură: 
+o	NUME char(30) (numele abonatului)  
+o	TEL char(10) (ex: 0359111111) 
+o	ADRESA char(25) (adresa abonatului) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Adăugaţi în baza de date abonatul cu numele Popescu, avȃnd numărul de telefon 0359123456, dacă nu există un abonat cu acelaşi număr de telefon, în caz contrar să se afişeze un mesaj corespunzător. 
+3.	Afişați lista abonaţilor în ordine alfabetică. 
+
+--a
+select * from telefon
+--b
+if exists(select * from telefon where tel='0359123456')
+	select 'Abonatul cu numarul dat exista' as Mesaj
+else
+	insert into telefon (Nume, Tel, Adresa, Impuls) values ('Popescu', '0359123456', 'F', 125)
+--c
+select * from telefon order by Nume
+
+Subiectul 9 
+ 
+Să se creeze, în baza de date atestat_2011, tabela telefon, având următoarea structură: 
+o	NUME char(30) (numele abonatului)  
+o	TEL char(10) (ex: 0359111111) 
+o	ADRESA char(25) ( adresa abonatului) 
+o	IMPULS int (numărul de impulsuri folosite) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Ştergeți din baza de date abonatul cu numele Scarlat Vasile şi numărul de telefon 0740123444. Dacă nu există un astfel de abonat să se afișeze un mesaj corespunzător. 
+3.	Afișați numărul total de impulsuri folosite. 
+
+--a
+select * from telefon
+--b
+if exists (select * from telefon where nume='Scarlat Vasile' and tel='0740123444')
+delete from telefon where nume='Scarlat Vasile' and tel='0740123444'
+else
+ select 'Abonatul cautat nu este in tabela' as Mesaj
+ --c
+ select  sum(impuls) as 'Numar total impulsuri' from telefon
+
+
+Subiectul 10 
+ 
+Să se creeze, în baza de date atestat_2011, tabela telefon, având următoarea structură: 
+o	NUME char(30) (numele abonatului)  
+o	TEL char(10) (ex: 0359111111) 
+o	ADRESA char(25) ( adresa abonatului) 
+o	IMPULS int (numărul de impulsuri folosite) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişați toate informaţiile despre  abonatul cu numele Popescu Maria. Dacă nu există se va afișa un mesaj corespunzător. 
+3.	Afişați abonatul (abonaţii) cu cel mai mare număr de impulsuri. 
+ 
+--a
+select * from telefon
+--b
+if exists(select * from telefon where nume='popescu Maria')
+	select tel,adresa,impuls from telefon where nume='popescu Maria'
+else
+	select 'Nu exista abonatul cu numele Popescu Maria in tabela.' as Mesaj
+
+--c
+select * from telefon where impuls=(select max(impuls) from telefon)
+
+
+Subiectul 11 
+ 
+Să se creeze, în baza de date atestat_2011, tabela telefon, având următoarea structură: 
+o	NUME char(30) (numele abonatului)  
+o	TEL char(10) (ex: 0359111111) 
+o	IMPULS int (numărul de impulsuri folosite) 
+o	PLATA int (suma datorată conform impulsurilor folosite) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Ştiind că un impuls costă 5 lei, calculați pentru fiecare abonat suma datorată; 
+3.	Afişează persoana (persoanele) care au cel mai puţin de plată . 
+
+--a
+select * from telefon
+--b
+update telefon set plata=5*impuls
+select * from telefon
+
+--c
+select * from telefon where plata=(select min(plata) from telefon)
+
+Subiectul 12 
+ 
+Să se creeze, în baza de date atestat_2011, tabela turism, având următoarea structură: 
+o	DENUMIRE char(20) (denumirea unităţii) 
+o	TIP char(1)  
+(poate lua una din următoarele valori:  
+H pentru hotel,  
+M pentru motel,  
+V pentru vilă,  
+C pentru căsuţă) 
+o	CATEGORIE int (poate fi 1, 2, 3 sau 4) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişați toate unităţile de categoria 1. Dacă nu există, afișați un mesaj corespunzător. 
+3.	Afişează numărul de unităţi de categoria 4 existente, indiferent de tip. 
+ 
+--a
+select * from Turism
+--b
+if exists(select * from Turism where Categorie=1)
+	select * from Turism where Categorie=1
+else
+	select 'Nu exista unitati de Categoria 1' as Mesaj
+--c
+select count(Categorie) as 'Unitati de categoria 4' from Turism where Categorie=4
+ 
+Subiectul 13 
+ 
+Să se creeze, în baza de date atestat_2011, tabela bibliot, având următoarea structură: 
+o	AUTOR char(20) (numele autorului ) 
+o	TITLU char(20) (titlul cărţii) 
+o	EDITURA char(10) (denumirea editurii) 
+Scrieţi un program care să realizeze: 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Căutaţi o carte al cărei titlu este Pe culmile disperării. Dacă se găseşte afişaţi date despre ea, altfel afişaţi un mesaj corespunzător. 
+3.	Afişaţi toate cărţile apărute la editura „All”. 
+
+--a
+select * from bibliot
+
+--b
+if exists(select * from bibliot where titlu = 'Pe culmile disperarii')
+	select autor,editura from bibliot where titlu = 'Pe culimile disperarii'
+else
+	select 'Cartea cu titlul cerut nu exista in biblioteca' as Mesaj
+
+--c
+select * from bibliot where editura = 'All'
+
+Subiectul 14 
+Să se creeze, în baza de date atestat_2011, tabela bibliot, având următoarea structură: 
+
+AUTOR char(20)  (numele autorului) 
+TITLU char(20)  (titlul cărţii) 
+EDITURA char(10) (denumirea editurii) 
+AN int   (anul apariţiei) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişaţi numărul cărţilor avându-l ca autor pe „Sadoveanu”, iar dacă nu există nicio carte, să se afişeze un mesaj; 
+3.	Afişaţi cărţile în ordine cronologică după anul apariţiei. 
+
+--a
+select * from bibliot
+--b
+if exists(select * from bibliot where Autor='Sadoveanu')
+	select count(Autor)  as 'Numarul cartilor avandu-l ca autor pe Sadoveanu'from bibliot where Autor='Sadoveanu'
+else
+select 'Nu exista carti scrise de Sadoveanu' as mesaj
+--c
+select * from bibliot order by an
+
+Subiectul  15 
+Să se creeze, în baza de date atestat_2011, tabela elevi, având următoarea structură: 
+o	NUME char(15) (numele elevului); 
+o	CLASA char(3) (clasa, exemplu: 9A, 12B); 
+o	VARSTA int (vârsta) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişaţi toţi elevii care au împlinit 18 ani pentru  clasa 12A, iar dacă nu există nici unul, să se afişeze un mesaj; 
+3.	Afişaţi elevii ordonaţi alfabetic pe clase. 
+
+--a
+select * from elevi
+--b
+if exists(select * from elevi where clasa='12A' and varsta>=18)
+	select * from elevi where clasa='12A' and varsta>=18
+else
+	select 'Nu exista elevi majori in 12A' as Mesaj
+--c
+select * from elevi order by clasa, nume
+
+
+Subiectul 16 
+ 
+Nero, împăratul Romei, îi acuză pe creştini de incendierea Romei şi hotărăşte să-i pedepsească.  
+Să se creeze, în baza de date atestat_2011, tabela roma, având următoarea structură: 
+o	NUME char(15) 
+o	VARSTA int 
+o	CRESTIN char(1) (ex: ‚F’ pentru fals şi  ‚T’  pentru adevărat) 
+o	SEX char(1).  
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Nero expulzează din Roma toate fetele cu vârsta cuprinsă între 10 şi 25 ani. Afişaţi lista cetăţenilor din Roma înainte şi după expulzare (expulzare=ştergere din tabelă); 
+3.	Nero scoate o listă cu ,,cetăţenii de bună credinţă” ai Romei (CRESTIN=’F’) ordonată alfabetic.  
+
+--a
+select* from roma
+--b
+select* from roma
+delete from roma where sex='F' and varsta>=10 and varsta <=25
+select* from roma
+--c
+select* from roma where crestin='F' order by nume
+
+Subiectul 17 
+ 
+Nero, împăratul Romei, îi acuză pe creştini de incendierea Romei şi hotărăşte să-i pedepsească. 
+Să se creeze, în baza de date atestat_2011, tabela roma, având următoarea structură: 
+o	NUME char(15) 
+o	VARSTA int 
+o	CRESTIN char(1) (ex: ‚F’ pentru fals şi  ‚A’  pentru adevărat) 
+o	SEX char(1) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Nero cere o listă cu toţi copiii cu vârsta cuprinsă între 3 şi 10 ani. Afişaţi lista cerută, iar dacă nu există nici un copil cu vârsta cuprinsă între 3 şi 10 ani se va afișa un mesaj. 
+3.	Nero vrea să afle care este cel mai bătrân om din Roma fie bărbat, fie femeie. Afişaţi numele celui mai bătrân om din Roma (Dacă sunt mai mulţi, se vor afişa toţi). 
+
+--a
+select *from Roma
+--b
+if exists(select *from Roma where varsta>=3 and varsta<=10)
+select *from Roma where varsta>=3 and varsta<=10
+else
+	select 'Nu exista copii cu varsta intre 3 si 10 ani' as Mesaj
+--c
+select *from roma where varsta=(select max(varsta) from Roma)
+
+Subiectul 18 
+ 
+Să se creeze, în baza de date atestat_2011, tabela produse, având următoarea structură: 
+o	DENUMIRE   varchar(20) (denumirea produselor)  
+o	PRET   decimal(7,2) (preţul unitar al produsului) 
+o	CANTITATE   int     (cantitatea existentă) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Căutați produsul cu denumirea „mouse”  şi să se afişeze preţul şi cantitatea, iar dacă nu există, să se afişeze un mesaj; 
+3.	Să se afişeze cel mai scump produs. 
+
+--a
+select *from Produse
+--b
+if exists(select *from Produse where denumire='mouse')
+select Pret,cantitate from Produse where denumire='mouse'
+else
+select 'Nu exista in tabela produsul mouse' as Mesaj
+--c
+select *from Produse where pret=(select max(pret) from Produse)
+
+Subiectul 19 
+ 
+La o societate de producţie evidenţa produselor finite se ţine într-un fişier PRODUSE; adăugaţi tabela produse în baza de date atestat_201, cu următoarea structură:  
+o	DENUMIRE char(20) (denumirea produselor) 
+o	PRET decimal(7,2)    (preţul unitar al produsului) 
+o	CANTITATE int (cantitatea existentă) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Verificați dacă produsul cu denumirea tastatura există. În caz afirmativ afișați prețul și cantitatea, iar ȋn caz contrar adăugați produsul cu această denumire, preţul 11.57 şi cantitatea 25; 
+3.	Să se adauge valoarea TVA ( 19% ) la preţul fiecărui produs . 
+
+--a
+select *from Produse
+--b
+if exists(select * from Produse where denumire='tastatura')
+select Pret, cantitate from Produse where denumire='tastatura'
+else
+insert into Produse (Denumire,Pret,Cantitate) values ('tastatura',11.57, 25)
+select *from produse
+--c
+update Produse set pret=1.19*Pret
+select *from Produse
+
+Subiectul 20 
+Să se creeze, în baza de date atestat_2011, tabela elevi, având următoarea structură: 
+o	NUME  char(15) (numele elevului) 
+o	CLASA   char(4) (clasa, exemplu: 9A, 12B) 
+o	PROFIL   char(10) (ex: real, uman, tehnic, economic) 
+o	MEDIA    decimal(5,2) (media pe an) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afișați elevii de la profilul real, iar  dacă nu există afişați un mesaj corespunzător; 
+3.	Să se afişeze media generală pentru clasa 12E. 
+
+--a
+select * from elevi
+--b
+if exists(select * from elevi where profil='real')
+	select * from elevi where profil='real'
+else
+	select 'Nu exista elevi la profil real' as Mesaj
+--c
+select avg(media) as 'Media clasei 12E' from elevi where clasa='12E'
+
+Subiectul 21 
+Să se creeze, în baza de date atestat_2011, tabela elevi, având următoarea structură: 
+o	NUME  char(15) (numele elevului) 
+o	NOTA1   decimal(5,2) (nota la primul examen) 
+o	NOTA2   decimal(5,2) (nota la al doilea examen)  
+o	REZULTAT      char(7) („ADMIS” sau „RESPINS”) 
+Un elev este considerat admis la un examen, dacă NOTA1>=5 și NOTA2>=5, în caz contrar este considerat respins. 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	În funcţie de notele obţinute de fiecare elev, completați câmpul REZULTAT cu „Admis” respectiv „Respins”. 
+3.	Creați două tabele ȋn baza de date atestat_2011, ordonate alfabetic după câmpul NUME: 
+Admis, care conţine elevii admişi; 
+Respins, care conţine elevii respinşi. 
+ 
+--a
+select * from elevi1
+--b
+update elevi1 set rezultat='Admis' where nota1>=5 and nota2>=5
+update elevi1 set rezultat='Respins' where nota1<5 or nota2<5
+select * from elevi1
+--c
+if exists(select * from INFORMATION_SCHEMA.tables where TABLE_NAME='Admis')
+	drop table Admis
+if exists(select * from INFORMATION_SCHEMA.tables where TABLE_NAME='Respins')	
+	drop table Respins
+create table Admis(Nume nchar(15),Nota1 decimal(5,2),Nota2 decimal(5,2),Rezultat nchar(7))
+create table Respins(Nume nchar(15),Nota1 decimal(5,2),Nota2 decimal(5,2),Rezultat nchar(7))
+insert into Admis(Nume,Nota1,Nota2,Rezultat) select Nume, Nota1, Nota2, Rezultat from elevi1 where nota1>=5 and nota2>=5
+insert into Respins(Nume,Nota1,Nota2,Rezultat) select Nume, Nota1, Nota2, Rezultat from elevi1 where nota1<5 and nota2<5
+select * from admis
+select * from respins
+
+Subiectul 22 
+Să se creeze, în baza de date atestat_2011, tabela cărţi, având următoarea structură: 
+ 
+o	AUTOR char(20)  (numele autorului) 
+o	TITLU char(20)  (titlul cărţii) 
+o	EDITURA char(10) (denumirea editurii) 
+o	AN_APAR int   (anul apariţiei) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişați toate cărţile tipărite după 2000, ordonate cronologic. Dacă nu există se va afișa un mesaj corespunzător; 
+3.	Adăugați o carte avându-l ca autor pe „Thomas Mann”, titlu „Muntele vrăjit”, editura „Corint”, anul apariţiei 2009. 
+
+--a
+select * from carti 
+--b
+if exists(select * from carti where [an apar]>2000)
+select * from carti where [an apar]>2000 order by [an apar]
+else
+ select 'Nu exista carti aparute dupa 2000' as Mesaj
+--c
+--insert into carti(autor, titlu, editura,[an apar]) values('Thomas Man' ,'Muntele vrajit', 'Corint', 2009)
+select * from carti 
+
+Subiectul 23 
+Să se creeze, în baza de date atestat_2011, tabela clasa, având următoarea structură: 
+ 
+o	NUME char(30)  (numele elevului) 
+o	DEN_P char(30)  (numele proiectului de atestat) 
+o	LIMBAJ char(20)  (limbajul în care este realizat proiectul) 
+o	NOTA_P decimal(5,2) (nota la proiect) 
+o	NOTA_B decimal(5,2) (nota la bilet) 
+o	MEDIA decimal(5,2) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Calculaţi media elevilor care au obţinut note>=7 (NOTA_P>=7 şi NOTA_B>=7). Dacă nu există niciun astfel de elev se va afișa un mesaj corespunzător; 
+3.	Afişaţi elevii admişi (NOTA_P>=7 şi NOTA_B>=7) ordonați alfabetic după limbaj. 
+
+--a
+select * from clasa
+
+--b
+if exists(select * from clasa where nota_b >= 7 and nota_p >= 7)
+	update clasa set media = (nota_b + nota_p) / 2 where nota_b >= 7 and nota_p >= 7
+else
+	select 'Nu exista elevi reusiti la examen' as Mesaj
+select * from clasa
+
+--c
+select * from clasa where nota_b >= 7 and nota_p >= 7 order by limbaj
+
+Subiectul 24 
+Să se creeze, în baza de date atestat_2011, tabela hotel, având următoarea structură: 
+ 
+o	DENUMIRE char(15) (numele hotelului)  
+o	NR_CAM int (numărul camerei) 
+o	NR_PAT int (numărul de paturi în cameră) 
+o	PRET_PAT int (preţul unui pat) 
+o	PRET_CAM int 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Calculează preţul tuturor camerelor, în funcţie de numărul de paturi şi preţul unui pat; 
+3.	Afişează camera(camerele) cu preţul cel mai mare.  
+
+--a
+select * from hotel
+
+--b
+update hotel set pret_cam=(nr_pat)*(pret_pat)
+select * from hotel
+
+--c
+select * from hotel where pret_cam=(select max(pret_cam) from hotel)
+
+Subiectul 25 
+Să se creeze, în baza de date atestat_2011, tabela olimp, pentru un magazin de pantofi, având următoarea structură: 
+ 
+o	DENUMIRE char(10) 
+o	PRET int 
+o	MARIME int 
+o	FEL char(1) (F-fete, B-băieţi)  
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişează toate articolele bărbăteşti cu mărimea 42, iar  dacă nu există afişați un mesaj corespunzător; 
+3.	Afişează articolele cele mai scumpe pentru femei. 
+
+--a
+select * from olimp
+--b
+if exists(select * from olimp where FEL='B' and MARIME=42)
+select * from olimp where FEL='B' and MARIME=42
+else
+select 'Nu exista articole barbatesti de marime 42' as mesaj
+--c
+select * from olimp where PRET=(select max(PRET) from olimp where FEL='F')
+
+Subiectul 26 
+Să se creeze, în baza de date atestat_2011, tabela elevi, pentru elevii unei şcoli, având următoarea structură: 
+ 
+o	NUME char(10) (nume elev)  
+o	PRENUME char(10) (prenume elev) 
+o	DATAN           date (data naşterii) 
+o	ADRESA char(30)  
+o	CLASA char(3)  
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişaţi elevii ordonați pe clase şi în cadrul claselor, alfabetic. 
+3.	Creaţi o nouă tabelă cu numele alocatii, cu elevii care s-au născut după anul 1993, inclusiv; 
+
+--a
+select * from elevi
+--b
+select * from elevi order by clasa,nume,prenume
+--c
+if exists(select * from INFORMATION_SCHEMA.tables where TABLE_NAME='Alocatii')
+	drop table Alocatii
+create table Alocatii(NUME nchar(10), PRENUME nchar(10), DATAN date, ADRESA nchar(30), CLASA char(3))
+insert into Alocatii(NUME,PRENUME,DATAN,ADRESA,CLASA) select NUME , PRENUME , DATAN , ADRESA , CLASA from elevi where year(DATAN)>=1993
+select * from Alocatii 
+
+Subiectul 27 
+Să se creeze, în baza de date atestat_2011, tabela locatar, pentru o asociaţie de locatari, având următoarea structură: 
+ 
+o	NUME char(20) 
+o	STRADA         char(20) 
+o	BLOC              char(5)  
+o	AP   int (numărul apartamentului) 
+o	PLATA             int (plata pe o lună pe apartament) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişaţi locatarii ordonaţi pe blocuri, iar ȋn cadrul unui bloc ordonați pe apartamente; 
+3.	Afişați  suma pe care o are de plătit locatarul Pop Ion. Dacă nu există niciun locatar cu acest nume, afișați un mesaj corespunzător; 
+
+--a
+select * from locatar
+--b
+select * from locatar order by bloc, ap, nume
+--c
+if exists(select * from locatar where nume='Pop Ion')
+	select plata as 'Suma de plata a locatarului Pop Ion' from locatar where nume='Pop Ion'
+else
+	select 'Nu exista locatarul Pop Ion' as Mesaj
+
+
+Subiectul 28 
+Să se creeze, în baza de date atestat_2011, tabela telefon, având următoarea structură: 
+ 
+o	NUME char(10) 
+o	PRENUME char(10) 
+o	TELEFON char(10) 
+o	VALOARE decimal(7,2) 
+o	 ACHITAT bit (1=achitat, 0=neachitat)  
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişaţi restanţierii, alfabetic (persoanele care nu au achitat factura de telefon), iar dacă nu există niciunul, afișați un mesaj corespunzător; 
+3.	Adăugaţi persoana cu numele „Mocanu”, prenumele „Mircea”, telefon „03590026262”, valoare 49 şi achitat 1. 
+
+--a
+select * from telefon
+
+--b
+if exists(select * from telefon where achitat=0)
+	select * from telefon where achitat=0 order by nume, prenume
+else
+	select 'nu exista restantieri' as Mesaj
+
+--c
+insert into telefon(nume, prenume, telefon, valoare, achitat) values('Mocanu', 'Mircea', '0359002626', 49, 1)
+select * from telefon
+ 
+Subiectul 29 
+Să se creeze, în baza de date atestat_2011, tabela produse, având următoarea structură: 
+ 
+o	DENUMIRE char(15) 
+o	CANTITATE int 
+o	PRET decimal(8,2) 
+o	DATAEX date (data expirării) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	În funcţie de preţ şi cantitate, să se afişeze valoarea totală a produselor din magazin; 
+3.	Afişează, alfabetic, produsele care expiră mâine. Dacă nu există astfel de produse afișați un mesaj corespunzător. 
+
+--a
+select * from produse
+
+--b
+select sum(pret*cantitate) as 'valoare totala produse' from produse
+
+--c
+if exists (select * from produse where
+year(dataex)=year(getdate()) and
+month(dataex)=month(getdate()) and
+day(dataex)=day(getdate())+1)
+select * from produse where
+year(dataex)=year(getdate()) and
+month(dataex)=month(getdate()) and
+day(dataex)=day(getdate())+1
+
+else select 'nu exista produse care expira maine' as mesaj
+
+Subiectul 30 
+Să se creeze, în baza de date atestat_2011, tabela carti, având următoarea structură: 
+ 
+o	AUTOR char(10)  
+o	TITLU char(10) 
+o	ANAPAR int (an apariţie) 
+o	NRE int (nr exemplare) 
+o	PRET decimal(7,2) 
+1.	Adăugaţi în această tabelă cel puţin 5 înregistrări; 
+2.	Afişați pentru toate cărţile apărute între anii 1990 – 2010,  câmpurile AUTOR,  TITLU, ANAPAR, NRE. Dacă nu există astfel de cărți, afișați un mesaj corespunzător. 
+3.	Ştergeți toate cărţile care au numărul de exemplare egal cu zero. 
+ 
+--a
+select * from carti
+--b
+if exists(select * from carti where Anapar>1990 and Anapar<2010)
+select Autor, Titlu, Anapar, Nre from carti where Anapar>1990 and Anapar<2010
+else
+select 'Nu exista carti editate intre anii 1990-2010' as Mesaj
+--c
+Delete from carti where nre=0
+select * from carti
