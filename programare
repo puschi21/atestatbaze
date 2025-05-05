@@ -1,4 +1,12 @@
 //sub 1//
+Fişierul atestat.in conţine două linii. Pe prima linie este scris un număr natural nenul n, (5<n<15). Pe cea de-a doua linie a fişierului sunt scrise n numere întregi separate prin câte un spaţiu, formate fiecare din cel mult 4 cifre, reprezentând un şir de n întregi .
+Să se scrie un program în limbajul Pascal/C/C++, care:
+a)	să afişeze pe prima linie a ecranului, valorile din fişier care sunt numere palindroame. Un număr este palindrom dacă şi numai dacă este egal cu oglinditul său. Exemplu 1221 este palindrom.
+b)	să afişeze pe a doua linie a ecranului separaţi prin câte un spaţiu, numărul de divizori proprii pentru fiecare număr din şirul din fişier;
+c)	să scrie în fişierul atestat.out, pe prima linie, toate numerele impare din şir, separate prin câte un spaţiu.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.
+
 #include <iostream>
 #include <fstream>
 
@@ -49,6 +57,15 @@ int main()
 }
 
 //sub 2//
+
+Fişierul atestat.in conţine două linii. Pe prima linie este scris un număr natural nenul n, (5<n<30). Pe cea de-a doua linie a fişierului sunt scrise n numere întregi pozitive separate prin câte un spaţiu, formate fiecare din cel mult 4 cifre. În șirul de valori vor fi cel puţin o valoare pară şi una impară.
+Să se scrie un program în limbajul Pascal/C/C++, care:
+a)	să afişeze pe prima linie a ecranului, valorile din fişier care sunt numere prime. Un număr este prim dacă şi numai dacă are exact doi divizori 1 şi numărul însuşi. 1 nu este număr prim.
+b)	să afişeze pe a doua linie a ecranului separate prin câte un spaţiu, cea mai mare valoare pară şi cea mai mică valoare impară care apar în şirul valorilor din fişier;
+c)	să scrie în fişierul atestat.out, pentru cea mai mare valoare pară, max, determinată la punctul anterior două valori impare prime care au suma egală cu max.
+
+ Notă: Programul va conţine cel puţin un subprogram definit de utilizator.
+
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -92,6 +109,15 @@ int main()
 }
 
 //sub 3//
+
+     Fişierul atestat.in conţine două linii. Pe prima linie este scris un număr natural nenul n, (5<n<30). Pe cea de-a doua linie a fişierului sunt scrise n numere naturale separate prin câte un spaţiu, formate fiecare din cel mult 9 cifre,  reprezentând un şir de n numere naturale.
+Să se scrie un program în limbajul Pascal/C/C++, care:
+a)	să afişeze pe prima linie a ecranului valorile pare din fişier, separate prin câte un spaţiu;
+b)	să afişeze pe ecran, pe linii diferite, cel mai mic număr a şi cel mai mare număr b din şirul dat;
+c)	să scrie în fişierul atestat.out cel mai mare divizor comun al numerelor a şi b, determinate la punctul b).
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.
+
 #include <iostream>
 #include <fstream>
 #include <climits>
@@ -136,6 +162,15 @@ int main()
 }
 
 //sub 4//
+
+Fişierul atestat.in conţine două linii. Pe prima linie este scris un număr natural nenul n, (5<n<30). Pe cea de-a doua linie a fişierului sunt scrise n numere naturale separate prin câte un spaţiu, formate fiecare din cel mult 9 cifre,  reprezentând un şir de n numere naturale.
+Să se scrie un program în limbajul Pascal/C/C++, care:
+a)	să afişeze pe prima linie a ecranului valorile impare din fişier, separate prin câte un spaţiu;
+b)	să afişeze pe a doua linie a ecranului, toate valorile din fişier care sunt formate doar din cifre pare, dacă nu există astfel de valori se va afişa mesajul: „Nu exista”
+c)	să scrie în fişierul atestat.out pentru prima valoare din fişierul atestat.in, cel mai mare şi cel mai mic număr natural care se pot construi din cifrele distincte nenule ale numărului citit. 
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.
+
 #include <iostream>
 #include <fstream>
 #include <climits>
@@ -195,6 +230,16 @@ int main()
 }
 
 //sub 5//
+
+Fişierul atestat.in conţine două linii. Pe prima linie este scris un număr natural nenul n, (5<n<30). Pe cea de-a doua linie a fişierului sunt scrise n numere naturale separate prin câte un spaţiu, formate fiecare din cel mult 4 cifre,  reprezentând un şir de n numere naturale.
+Să se scrie un program în limbajul Pascal/C/C++, care:
+a)	să afişeze pe prima linie a ecranului valorile pare din fişier, separate prin câte un spaţiu;
+b)	să afişeze pe a doua a ecranului, toate valorile din fişier care sunt formate doar din cifre impare, dacă nu există astfel de valori se va afişa mesajul: „Nu exista”
+c)	să scrie în fişierul atestat.out toate numerele care au un număr k de divizori primi; numărul natural k se va citi de la tastatură. 
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.
+
+
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -261,6 +306,15 @@ int main()
 }
 
 //sub 6//
+
+Fişierul atestat.in conţine două linii. Pe prima linie este scris un număr natural nenul n, (5<n<30). Pe cea de-a doua linie a fişierului sunt scrise n numere reale separate prin câte un spaţiu, reprezentând un şir de n numere reale.
+Să se scrie un program în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran, pe prima linie, toate numerele din fişier, separate prin câte un spaţiu;
+b)	să afişeze pe următoarea linie a ecranului, media aritmetică a numerelor negative din şir, cu o precizie de 2 zecimale (dacă şirul nu conţine numere negative se va afişa 0);
+c)	să citească de la tastatură două numere naturale nenule p1 şi p2 (1<p1<p2<n), să ordoneze crescător  numerele din fişier situate între poziţiile p1 şi p2, inclusiv,  şi să scrie noul şir în fişierul atestat.out, pe o linie, numerele separându-se prin câte un spaţiu.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -309,6 +363,14 @@ int main()
 }
 
 //sub 7//
+
+     Fişierul atestat.in conţine două linii. Pe prima linie este scris un număr natural nenul n, (5<n<30). Pe cea de-a doua linie a fişierului sunt scrise n numere naturale separate prin câte un spaţiu, formate fiecare din cel mult 4 cifre,  reprezentând un şir de n numere naturale. Şirul conţine cel puţin două numere impare.
+Să se scrie un program  în limbajul Pascal/C/C++, care:
+a)	să afişeze pe prima linie a ecranului, în ordinea inversă citirii, toate numerele din fişier, separate prin câte un spaţiu;
+b)	să afişeze pe a doua linie a ecranului, numărul de cifre din care este format fiecare număr din şirul iniţial, numerele din linie separându-se prin câte un spaţiu;
+c)	să scrie în fişierul atestat.out, pe prima linie, suma tuturor numerelor impare din şir.
+Notă: Programul va conţine cel puţin un subprogram util definit de utilizator.
+
 #include <iostream>
 #include <fstream>
 #include <climits>
@@ -349,6 +411,15 @@ ofstream fout("atestat.out");
  }
 
 //sub 8//
+
+Fişierul atestat.in conţine două linii. Pe prima linie este scris un număr natural nenul n, (5<n<30). Pe cea de-a doua linie a fişierului sunt scrise n numere întregi separate prin câte un spaţiu, formate fiecare din cel mult 4 cifre,  reprezentând un şir de n numere întregi. Şirul valorilor este ordonat descrescător.
+Să se scrie un program  în limbajul Pascal/C/C++, care:
+d)	să afişeze pe prima linie a ecranului, în ordinea inversă citirii, toate numerele din fişier, separate prin câte un spaţiu;
+e)	să afişeze pe a doua linie a ecranului, mesajul “DA” sau “NU” în funcţie de rezultatul căutării valorii x, citită de la tastatură, în şirul de valori din fişier;
+f)	să scrie în fişierul atestat.out, pe prima linie, suma tuturor numerelor pozitive din şir.
+
+Notă: Programul va conţine cel puţin un subprogram util definit de utilizator.
+
 #include <iostream>
 #include <fstream>
 
@@ -397,6 +468,15 @@ int main()
 }
 
 //sub 9//
+
+    Fişierul atestat.in conţine pe prima linie numărul n, natural nenul (2<n<20), ce reprezintă numărul de linii şi coloane ale unei matrice pătratice A. Pe fiecare din următoarele n linii, sunt scrise câte n numere naturale, formate din exact 2 cifre fiecare, separate prin câte un spaţiu, reprezentând valorile elementelor matricei pătratice A.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei A, linie cu linie, elementele de pe aceeaşi linie fiind separate prin câte un spaţiu;
+b)	să modifice matricea A astfel încât toate elementele situate pe diagonala secundară să aibă valoarea k , k citit de la tastatură,  şi să se afişeze matricea rezultată pe ecran;
+c)	să scrie în fişierul atestat.out, pe prima linie, separate prin câte un spaţiu, toate toate numerele prime din matricea modificată. Dacă nu există se va scrie pe prima linie a fişierului mesajul “NU”.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -442,6 +522,15 @@ int main()
 }
 
 //sub 10//
+
+    Fişierul atestat.in conţine pe prima linie două valori n şi m, numere naturale nenule (2<n, m<20), ce reprezintă numărul de linii respectiv coloane ale unei matrice A. Pe fiecare din următoarele n linii, sunt scrise câte m numere naturale, separate prin câte un spaţiu, reprezentând valorile elementelor matricei A. Pe ultima linie a fişierului este o valoare k.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei A, linie cu linie, elementele de pe aceeaşi linie fiind separate prin câte un spaţiu;
+b)	să afişeze liniile din matrice care au k elemente nule, dacă nu există astfel de linii se va afişa mesajul “Nu există”;
+c)	să scrie în fişierul atestat.out, pe prima linie, separate prin câte un spaţiu, toate toate numerele impare de pe coloana c a matricei, c va fi citit de la tastatură. Dacă nu există valori se va scrie pe prima linie a fişierului mesajul “NU”.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -487,6 +576,15 @@ int main()
 }
 
 //sub 11//
+
+     Fişierul atestat.in conţine pe prima linie numărul n, natural nenul (2<n<20), ce reprezintă numărul de linii şi coloane ale unei matrice pătratice A. Pe fiecare din următoarele n linii, sunt scrise câte n numere naturale, separate prin câte un spaţiu, reprezentând valorile elementelor matricei pătratice A.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei A, linie cu linie, elementele de pe aceeaşi linie fiind separate prin câte un spaţiu;
+b)	să afişeze pe următoarea linie a ecranului, ultima cifră a produsului tuturor elementelor matricei A situate sub diagonala principală;
+c)	să scrie în fişierul atestat.out, pe prima linie, separate prin câte un spaţiu, toate numerele de tip palindrom din matricea A. Un număr este palindrom dacă numărul citit de la stânga la dreapta este egal cu numărul citit de la dreapta la stânga, de exemplu: 11, 22, 33. Dacă nu există astfel de numere se va scrie pe prima linie a fişierului mesajul “Nu exista”.
+
+Notă: Programul va conţine cel puţin un subprogram defint de utilizator. 
+
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -531,6 +629,16 @@ int main()
 }
 
 //sub 12//
+
+Fişierul atestat.in conţine pe prima linie numărul n, natural nenul (2<n<20), ce reprezintă numărul de linii şi coloane ale unei matrice pătratice A. Pe fiecare din următoarele n linii, sunt scrise câte n numere naturale, formate din cel mult 4 cifre fiecare, separate prin câte un spaţiu, reprezentând valorile elementelor matricei pătratice A.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei A, linie cu linie, elementele de pe aceeaşi linie fiind separate prin câte un spaţiu;
+b)	să afişeze pe următoarea linie a ecranului suma elementelor matricei A situate pe diagonala secundară;
+c)	să scrie în fişierul atestat.out, pe prima linie, separate prin câte un spaţiu, minimele de pe fiecare linie a matricei.
+
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+
 #include <iostream>
 #include <fstream>
 
@@ -573,6 +681,15 @@ int main()
 }
 
 //sub 13//
+
+Fişierul atestat.in conţine pe prima linie numărul n, natural nenul (2<n<10), ce reprezintă numărul de linii şi coloane ale unei matrice pătratice A. Pe fiecare din următoarele n linii, sunt scrise câte n numere întregi, formate din cel mult 9 cifre fiecare, separate prin câte un spaţiu, reprezentând valorile elementelor matricei pătratice A.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei A, linie cu linie, elementele de pe aceeaşi linie fiind separate prin câte un spaţiu;
+b)	să citească de la tastatură un număr natural k de cel mult 9 cifre şi să verifice dacă acesta se găseşte în matricea A, afişându–se pe ecran un mesaj corespunzător; 
+c)	să modifice matricea A prin atribuirea valorii 0 tuturor elementelor situate pe ultima linie a matricei şi apoi să se scrie în fişierul atestat.out matricea rezultată, linie cu linie, elementele de pe aceeaşi linie fiind separate prin câte un spaţiu.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -623,6 +740,15 @@ int main()
 }
 
 //sub 14//
+
+Fişierul atestat.in conţine pe prima linie numărul n, natural nenul (2<n<10), ce reprezintă numărul de linii şi de coloane ale unei matrice, iar pe următoarele n linii câte n numere reale separate prin câte un spaţiu, reprezentând elementele matricei.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei A, linie cu linie, elementele de pe aceeaşi linie fiind separate prin câte un spaţiu;
+b)	să afişeze pe următoarea linie a ecranului, media aritmetică a elementelor de pe diagonala principală;
+c)	să determine suma elementelor matricei situate pe linia k, unde k (0<kn) este un număr natural citit de la tastatură şi să scrie pe prima linie a fişierului atestat.out valoarea acestei sume.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -664,6 +790,15 @@ int main()
 }
 
 //sub 15//
+
+Fişierul atestat.in conţine o singură linie pe care se află scris un text format din cel mult 250 de caractere, primul caracter fiind literă, iar cuvintele din text sunt separate prin câte un spaţiu. Fiecare cuvânt este format doar din litere mari sau mici ale alfabetului limbii engleze.
+Să se scrie un program în limbajul Pascal/C/C++, care:
+a)	să afişeze  textul pe o singură linie a ecranului, numai cu litere mari;
+b)	să afişeze pe următoarea linie a ecranului numărul de consoane din text;
+c)	să scrie în fişierul atestat.out, pe prima linie, numărul cuvintelor din text.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.  
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -699,6 +834,15 @@ int main()
 }
 
 //sub 16//
+
+      Fişierul atestat.in conţine o singură linie pe care se află scris un text format din cel mult 100 de caractere, primul caracter fiind literă, iar cuvintele din text sunt separate prin câte un spaţiu. Fiecare cuvânt este format doar din litere mari sau mici ale alfabetului limbii engleze.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze textul pe o singură linie a ecranului, numai cu litere mari;
+b)	să afişeze pe următoarea linie a ecranului numărul de vocale din text;
+c)	să scrie în fişierul atestat.out, pe prima linie, numărul de cuvinte din textul iniţial care au primul caracter ’a’.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.  
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -736,6 +880,15 @@ int main()
 }
 
 //sub 17//
+
+Fişierul atestat.in conţine o singură linie pe care se află scris un text format din cel mult 70 de caractere, primul caracter fiind literă, iar cuvintele din text sunt separate prin câte un spaţiu. Fiecare cuvânt este format doar din litere mari ale alfabetului limbii engleze.
+     Să se scrie un program în limbajul Pascal/C/C++, care:
+a)	să afişeze textul pe o singură linie a ecranului, numai cu litere mici;
+b)	să afişeze pe următoarea linie a ecranului, numărul de cuvinte din care este format textul;
+c)	să citească de la tastatură o literă, să modifice fiecare cuvânt care începe cu litera ‘M’ prin înlocuirea acesteia cu litera citită de la tastatură şi să scrie în fişierul atestat.out, pe prima linie,  textul modificat.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -777,6 +930,15 @@ int main()
 }
 
 //sub 18//
+
+    Fişierul atestat.in conţine o singură linie pe care se află scris un text format din cel mult 100 de caractere, primul caracter fiind literă, iar cuvintele din text sunt separate prin câte un spaţiu. Fiecare cuvânt este format din litere mari sau mici ale alfabetului limbii engleze, sau din cifre.
+Să se scrie un program în limbajul Pascal/C/C++, care:
+a)	să afişeze textul pe prima linie a ecranului, numai cu litere mici;
+b)	să afişeze pe ecran, pe linii separate, toate cuvintele din textul iniţial;
+c)	să scrie pe prima linie a fişierului atestat.out numărul cifrelor întâlnite în text.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.  
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -811,6 +973,16 @@ int main()
 }
 
 //sub 19//
+
+     Fişierul atestat.in conţine o singură linie pe care se află scris un text format din cel mult 50 de caractere, primul şi ultimul caracter fiind litere, iar cuvintele din text sunt separate prin câte un spaţiu. Fiecare cuvânt este format doar din litere mari sau mici ale alfabetului limbii engleze.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze textul pe ecran, pe o singură linie, numai cu litere mari;
+b)	să afişeze pe următoarea linie a ecranului  textul iniţial, fără spaţii între cuvinte;
+c)	să scrie în fişierului atestat.out, sub formă de triunghi toate secvenţele mediane ale primului cuvânt din textul citit, pornind de la întregul cuvânt, până la secvenţa alcătuită din caracterul (sau cele 2 caractere) din mijloc.
+
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -846,6 +1018,16 @@ int main()
 }
 
 //sub 20//
+
+     Fişierul atestat.in conţine o singură linie pe care se află scris un text format din cel mult 100 de caractere, primul şi ultimul caracter sunt litere, iar cuvintele din text sunt separate prin câte un spaţiu. Fiecare cuvânt este format doar din litere mari sau mici ale alfabetului limbii engleze.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze textul pe ecran, pe o singură linie, numai cu litere mari;
+b)	să afişeze pe următoarea linie a ecranului  textul iniţial, fără spaţii între cuvinte;
+c)	să scrie în fişierului atestat.out, perechile de cuvinte care sunt anagrame. Două cuvinte sunt anagrame dacă au lungime egală și sunt formate din aceleași litere eventual în altă ordine. Comparația celor două cuvinte se realizează fără a ține cont de litere mari sau mici ale alfabetului.
+
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -900,6 +1082,15 @@ int main()
 }
 
 //sub 21//
+
+Fişierul atestat.in conţine o singură linie pe care se află scris un text format din cel mult 100 de caractere, primul şi ultimul caracter sunt litere, iar cuvintele din text sunt separate prin câte un spaţiu. Fiecare cuvânt este format doar din litere mari sau mici ale alfabetului limbii engleze.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+d)	să afişeze textul pe ecran, pe o singură linie, numai cu litere mici;
+e)	să afişeze pe următoarea linie a ecranului  textul iniţial, fără spaţii între cuvinte;
+f)	să scrie în fişierului atestat.out, cuvintele care au proprietatea de palindrom. Un cuvânt este palindrom dacă citit de la stânga spre dreapta se obține același rezultat ca și citit de la dreapta spre stânga. Nu se face distincție între literele mari și mici.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -941,6 +1132,16 @@ int main()
 }
 
 //sub 22//
+
+Fişierul atestat.in conţine pe prima linie numărul natural nenul n (2<n<10). Pe următoarele n linii sunt scrise câte două numere naturale nenule a şi b, reprezentând numărătorul (a) şi numitorul (b) unei fracţii algebrice. Cele două numere sunt separate printr-un spaţiu. 
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran, pe aceeaşi linie, separate prin câte un spaţiu, cele n fracţii sub forma a/b  (numărător/numitor);
+b)	să afişeze pe următoarea linie a ecranului prima fracţie cu numărătorul maxim;
+c)	să scrie pe prima linie a fişierului atestat.out, separate prin spaţiu, toate fracţiile ireductibile începând din a doua linie a fişierului atestat.in, sub forma a/b. 
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.
+          Se vor folosi structuri de date  tip înregistrare.
+
 #include <iostream>
 #include <fstream>
 
@@ -987,6 +1188,16 @@ int main()
 }
 
 //sub 23//
+
+      Fişierul atestat.in conţine pe prima linie numărul natural nenul n (2<n<10). Pe fiecare dintre următoarele n linii sunt scrise câte două numere naturale x şi y, separate printr-un spaţiu, reprezentând coordonatele unui punct din planul xOy. 
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran punctele din planul xOy, câte unul pe linie, sub forma (x,y);
+b)	să afişeze pe următoarea linie a ecranului numărul punctelor care sunt situate pe axa Ox;
+c)	să scrie în fişierul atestat.out, pe linii distincte, toate punctele din fişierul atestat.in  care au ambele coordonate pare, sub forma (x,y). 
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+          Se vor folosi structuri de date tip înregistrare.
+
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -1019,6 +1230,15 @@ int main()
 }
 
 //sub 24//
+
+    Fişierul atestat.in conţine pe prima linie o valoare n număr natural (1<n<10) iar pe următoarele n linii câte un cuvânt, fiecare cuvânt fiind format din litere mari ale alfabetului englez.
+Să se scrie un program în limbajul Pascal/C/C++, care:
+a)	să afişeze pe prima linie a ecranului, cuvintele numai cu litere mici;
+b)	să afişeze pe ecran, cuvântul cu lungime maximă dintre cuvintele ințiale citite în fișier;
+c)	să scrie pe prima linie a fişierului atestat.out, n+1 caractere formate după regula: primul caracter din şir este prima literă din primul cuvânt, al doilea caracter din şir este a doua literă din al doilea cuvânt, al treilea caracter din şir este a treia literă din al treilea cuvânt, etc. Ultimul caracter va fi ’.’ (punct). Dacă unul dintre cuvinte nu are suficiente litere, şirul rezultat va conţine pe poziţia corespunzătoare un spaţiu.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator.  
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -1066,6 +1286,15 @@ int main()
 }
 
 //sub 25//
+
+Fişierul atestat.in conţine pe prima linie numărul n, natural nenul (2<n<10), ce reprezintă numărul de noduri ale unui graf neorientat. Pe următoarele linii până la sfârșitul fișierului sunt perechi de valori x y cu semnificația nodul x este legat printr-o muchie de nodul y.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei de adiacență atașată grafului citit;
+b)	să citească de la tastatură un număr natural v reprezentând valoarea unui nod al grafului, și să afișeze pe ecran gradul nodului v; 
+c)	să modifice matricea A astfel încât graful să devină complet și să afișeze în fișierul atestat.out matricea rezultată, linie cu linie, elementele de pe aceeaşi linie fiind separate prin câte un spaţiu.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -1107,6 +1336,16 @@ int main()
 }
 
 //sub 26//
+
+Fişierul atestat.in conţine pe prima linie numărul n, natural nenul (2<n<10), ce reprezintă numărul de noduri ale unui graf orientat. Pe următoarele linii până la sfârșitul fișierului sunt perechi de valori x y cu semnificația arcul (x, y) aparține grafului.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei de adiacență atașată grafului citit;
+b)	să citească de la tastatură un număr natural v reprezentând valoarea unui nod al grafului, și să afișeze pe ecran gradul interior și gradul exterior al nodului v; 
+c)	să afișeze în fișierul atestat.out, dacă există, toate drumurile de lungime 2 care pleacă din vârful v, v citit de la tastatură.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+Exemplu: 
+
 #include <iostream>
 #include <fstream>
 
@@ -1157,6 +1396,15 @@ int main()
 }
 
 //sub 27//
+
+Fişierul atestat.in conţine pe prima linie numărul n, natural nenul (2<n<10), ce reprezintă numărul de noduri ale unui graf neorientat. Pe următoarele linii până la sfârșitul fișierului sunt perechi de valori x y cu semnificația nodul x este legat printr-o muchie de nodul y.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei de adiacență atașată grafului citit;
+b)	să afișeze pe ecran, dacă există, nodurile izolate ale grafului; 
+c)	să modifice matricea A astfel încât nodul v, valoarea v va fi citită de la tastatură, să fie adiacent cu toate celelalte noduri, iar matricea astfel modificată să o afișeze în fișierul atestat.out.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -1211,6 +1459,15 @@ int main()
 }
 
 //sub 28//
+
+Fişierul atestat.in conţine pe prima linie numărul n, natural nenul (2<n<10), ce reprezintă numărul de noduri ale unui graf neorientat. Pe următoarele linii până la sfârșitul fișierului sunt perechi de valori x y cu semnificația nodul x este legat printr-o muchie de nodul y.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei de adiacență atașată grafului citit;
+b)	să afișeze pe ecran, nodul sau nodurile care au gradul maxim; 
+c)	să modifice matricea A astfel încât nodul v, valoarea v va fi citită de la tastatură, să devină nod izolat, iar matricea astfel modificată să o afișeze în fișierul atestat.out.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+
 #include <iostream>
 #include <fstream>
 
@@ -1273,6 +1530,15 @@ int main()
 }
 
 //sub 29//
+
+Fişierul atestat.in conţine pe prima linie numărul n, natural nenul (2<n<10), ce reprezintă numărul de noduri ale unui graf neorientat. Pe următoarele linii până la sfârșitul fișierului sunt perechi de valori x y cu semnificația nodul x este legat printr-o muchie de nodul y.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei de adiacență atașată grafului citit;
+b)	să citească de la tastatură o secvență de noduri și să afișeze mesajul ”DA” dacă secvența de noduri este lanț în graf și ”NU” în caz contrar; 
+c)	să citească de la tastatură valoarea unui nod v și să afișeze în fișierul atestat.out care este lista de adiacență a nodului citit.
+ 
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+
 #include <iostream>
 #include <fstream>
 
@@ -1321,6 +1587,15 @@ int main()
 }
 
 //sub 30//
+
+Fişierul atestat.in conţine pe prima linie numărul n, natural nenul (2<n<10), ce reprezintă numărul de noduri ale unui graf orientat. Pe următoarele linii până la sfârșitul fișierului sunt perechi de valori x y cu semnificația arcul (x, y) aparține grafului.
+Să se scrie un program, în limbajul Pascal/C/C++, care:
+a)	să afişeze pe ecran elementele matricei de adiacență atașată grafului citit;
+b)	să afișeze pe ecran toate nodurile care au proprietatea că numărul arcelor ce pleacă din nodul respectiv este egal cu numărul arcelor care intră în nodul respectiv. (nodurile cu gradul exterior egal cu cel interior) 
+c)	să citească de la tastatură o secvență de noduri ale grafului și să afișeze în fișierul atestat.out, mesajul ”DA” dacă secvența este drum în graful citit și ”NU” în caz contrar.
+
+Notă: Programul va conţine cel puţin un subprogram definit de utilizator. 
+
 #include <iostream>
 #include <fstream>
  
